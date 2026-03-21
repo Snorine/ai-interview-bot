@@ -34,6 +34,15 @@ padding:10px;
 
 <input id="question" placeholder="Ask a question..." />
 <button onclick="ask()">Send</button>
+  <p>Ask questions like:</p>
+
+<ul>
+<li>Tell me about yourself</li>
+<li>What tools do you use?</li>
+<li>Describe a workflow you automated</li>
+<li>What experience do you have with n8n?</li>
+<li>Why should we hire you?</li>
+</ul>
 
 <script>
 
@@ -43,8 +52,7 @@ let q = document.getElementById("question").value;
 
 document.getElementById("chat").innerHTML += "<p><b>You:</b> "+q+"</p>";
 
-let response = await fetch("https://ashli-stratous-declivitously.ngrok-free.dev/webhook/interview-bot?question="+encodeURIComponent(q));
-
+let response = await fetch("https://ashli-stratous-declivitously.ngrok-free.dev/webhook/interview-bot?question=" + question)
 let text = await response.text();
 
 document.getElementById("chat").innerHTML += "<p><b>Bot:</b> "+text+"</p>";
