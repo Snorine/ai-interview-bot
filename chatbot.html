@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>AI Interview Bot</title>
+<style>
+body{
+font-family: Arial;
+max-width: 700px;
+margin: 40px auto;
+}
+#chat{
+border:1px solid #ccc;
+padding:20px;
+height:400px;
+overflow:auto;
+margin-bottom:10px;
+}
+input{
+width:80%;
+padding:10px;
+}
+button{
+padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Interview AI Assistant</h2>
+
+<div id="chat"></div>
+
+<input id="question" placeholder="Ask a question..." />
+<button onclick="ask()">Send</button>
+
+<script>
+
+async function ask(){
+
+let q = document.getElementById("question").value;
+
+document.getElementById("chat").innerHTML += "<p><b>You:</b> "+q+"</p>";
+
+let response = await fetch("https://ashli-stratous-declivitously.ngrok-free.dev/webhook/interview-bot?question="+encodeURIComponent(q));
+
+let text = await response.text();
+
+document.getElementById("chat").innerHTML += "<p><b>Bot:</b> "+text+"</p>";
+
+document.getElementById("question").value="";
+
+}
+
+</script>
+
+</body>
+</html>
